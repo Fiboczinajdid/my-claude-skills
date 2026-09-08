@@ -22,7 +22,7 @@ This repo is a personal collection of [Claude Skills](https://www.anthropic.com/
 ### Claude Code
 
 ```bash
-git clone https://github.com/<your-username>/my-claude-skills.git
+git clone https://github.com/Fiboczinajdid/my-claude-skills.git
 
 # Copy the skill you want
 cp -r my-claude-skills/<skill-name> ~/.claude/skills/
