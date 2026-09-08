@@ -1,3 +1,4 @@
+#quick summary of the skill
 A Claude skill that turns your really bad prompt with no details and context into a ready-to-use prompt with everything you would want LLM to know - for Claude or other LLMs
 ## What it does
 
