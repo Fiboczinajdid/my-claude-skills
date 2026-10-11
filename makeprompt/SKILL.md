@@ -1,47 +1,69 @@
 ---
 name: makeprompt
-description: Turns the user's own description of a task into a polished, ready-to-use prompt for another text-based AI/LLM (primarily Claude, but usable for any chat model). Trigger this ONLY when the user's message starts with or explicitly contains the exact command "/makeprompt". Do not trigger on natural-language requests like "write me a prompt" or "make a prompt for AI" without the literal "/makeprompt" command present — wait for the explicit command instead. Do not use this for image, video, or audio generation prompts — this skill is for text/chat models only.
+description: Turns the user's task description into a ready-to-paste prompt for Claude, tailored to where it will be used.
+disable-model-invocation: true
 ---
 
 # Make Prompt
 
-This skill converts a rough idea, task description, or goal — however short or detailed — into a well-structured prompt the user can copy and paste into another AI chat (most often Claude, but the output should work reasonably well with other LLMs too).
+You write a prompt for another Claude instance; you do not do the task itself. The user pastes it into Claude Code, a one-off claude.ai chat, or claude.ai Project instructions. The receiving Claude sees only the prompt, never this conversation, so everything it needs has to be in the prompt.
 
-The deliverable is **the prompt itself**, not a completion of the underlying task. Don't do the task described in the user's input — write a prompt that would get an AI to do it well.
+If the user names a different model or tool as the target, write for that target and skip the Claude-specific advice that doesn't apply.
 
-## Step 0 — Always ask about desired length
+## 1. Read the request
 
-Before drafting, always ask the user how long/detailed they want the final prompt to be (e.g. short and to-the-point vs. more thorough/structured). Ask this every time, regardless of how detailed their task description already is — it's a standing preference check, not a context gap. This can be combined with any other clarifying questions from Step 1 into one round if both are needed.
+From the description and any attachments, work out:
+- what the receiving Claude should produce or do;
+- the destination: Claude Code (repo, code, project files, terminal), Project instructions (a standing assistant, "zawsze", "w każdej rozmowie"), otherwise a one-off chat;
+- whether the prompt is one-off or reused with different input each time;
+- the constraints that matter: audience, tone, format, scope, what must not happen.
 
-## Step 1 — Check if there's enough to work with
+The user may put a detail level right after the command: `/makeprompt zwięzły|standard|pełny …`.
 
-Before writing anything, judge whether the user's description gives you enough to produce a genuinely useful prompt. A description is "enough" when you can tell:
-- What the AI receiving the prompt is actually supposed to produce (an email? code? analysis? a story?)
-- Roughly what context or constraints matter (audience, tone, length, format, must-avoids)
+## 2. Ask
 
-If the description is vague or one-line (e.g. "write me a prompt for writing emails"), **ask as many clarifying questions as needed to fully understand the context** before generating the prompt — there's no cap on how many. Don't guess silently. Keep gathering context until you genuinely know what the receiving AI should produce and what constraints matter; it's fine to go through multiple rounds of questions if the first round's answers open up new ambiguity. Use `ask_user_input_v0` if available so the user can tap instead of type; otherwise ask inline.
+Ask every question you need, in rounds: put all currently open questions in one message, then wait. There is no cap on questions or rounds; continue until you know what the receiving Claude must produce and under which constraints. Skip anything the description already answers.
 
-If the description is already detailed enough to act on, skip straight to Step 2 — don't add friction by asking questions whose answers are already implied.
+Unless the user gave the level in the command, always ask for the detail level in the first round, alongside the other questions, with your recommendation listed first and marked "(zalecany)":
+- **Zwięzły**: goal and expected result, 1–5 sentences; the receiving Claude decides the rest.
+- **Standard**: adds context, constraints, output format and a clear "done when".
+- **Pełny**: adds edge cases, examples, ordered steps and how to verify the result.
 
-## Step 2 — Write the prompt
+Base the recommendation on the task's complexity and on how costly a wrong result would be.
 
-Draft a prompt that follows solid general prompting practice, adapted to how substantial the task is:
+Ask about the destination only when you can't infer it. Use the multiple-choice question tool if one is available (it takes up to 4 questions); put any further questions as text in the same message.
 
-- **State the task clearly and specifically** — what the receiving AI should do, for whom, and why, in plain direct language.
-- **Give relevant context** the user provided (audience, constraints, background, examples, tone, format).
-- **Specify the desired output format** when it matters (length, structure, sections, code vs. prose, etc.).
-- **Include examples** in the prompt only if the user gave you something to work from, or if the task is the kind where one clarifying example genuinely helps (don't invent fake examples that could mislead).
-- **Keep it as short as it can be while still being clear.** A two-sentence task doesn't need a ten-section prompt. Scale the prompt's length and structure to the complexity of what's being asked — simple asks get simple prompts, complex or multi-part asks can use light structure (e.g. short labeled sections) to stay unambiguous.
-- Write the prompt in the same language the user described their task in, unless they specify otherwise.
+## 3. Write
 
-## Step 3 — Present it
+Read the reference file for the destination first:
+- Claude Code → `references/claude-code.md`
+- one-off chat → `references/chat.md`
+- Project instructions → `references/projekt.md`
 
-Show the finished prompt in a copyable code block (triple backticks), with nothing else inside the block — just the prompt text itself, ready to paste elsewhere. After the block, you can add one short line noting any assumptions you made (if you didn't ask clarifying questions but had to infer something minor), but keep this brief — the prompt is the deliverable, not a discussion of it.
+In every prompt:
+- State the task and its purpose plainly. Give the reason behind each constraint ("krótko, bo czytam na telefonie"); Claude applies a rule better when it knows why the rule exists.
+- Say what to do, not only what to avoid.
+- Keep a calm, normal register: no capitals for emphasis, no MUST/NEVER/CRITICAL. Current Claude models follow instructions closely and overapply rules that are shouted.
+- Wrap supplied material (documents, data, code, examples) in descriptive XML tags such as `<artykul>…</artykul>` and refer to it by the tag name.
+- Reusable prompt: leave placeholders such as `{{ARTYKUL}}` inside those tags. One-off prompt: put the real content in.
+- Say what "done" looks like, and what to do when information is missing or the task turns out not to be possible as described (ask, state assumptions, or report back).
+- If the task depends on a file or image the user has, the prompt says it is attached, and you tell the user to attach it.
+- Add examples only if the user supplied material or a single example removes real ambiguity; never invent examples that could mislead.
+- Write to the chosen detail level and add nothing it doesn't call for.
 
-Do not save this as a file and do not send it anywhere — it's for the user to copy themselves.
+Language: Project instructions in English, ending with an instruction to respond in the user's language. Claude Code and chat prompts in the language of the user's description. An explicit request from the user overrides this.
 
-## Examples of good scoping
+## 4. Check
 
-- User: "/makeprompt pomóż mi z promptem do podsumowywania długich artykułów naukowych" → task is clear enough on content, but still ask about desired prompt length (Step 0), and maybe one more clarifying question about audience if it seems important.
-- User: "/makeprompt zrób mi prompt" (nothing else) → too vague, ask what the prompt should help the receiving AI do — and combine with the length question in the same round.
-- User: "/makeprompt chcę prompt dla Claude, który pomoże mi pisać cotygodniowe raporty statusu projektu dla mojego zespołu — mam listę zadań z Jiry, chcę żeby AI grupowało je wg priorytetu i pisało krótkie podsumowanie po polsku" → task itself is fully detailed, but still ask the length question (Step 0) before drafting.
+Before showing the prompt, reread it as a capable reader who has never seen this conversation. Can they tell what to do, with what material, and when they are done? Does it refer to anything that isn't in it ("ten plik", "jak wcześniej")? Fix whatever fails. Don't report the check itself.
+
+## 5. Deliver
+
+- The prompt in one code block with nothing else inside it. If the prompt itself contains triple backticks, fence it with four.
+- Below it, in the user's language:
+  - the assumptions you made, if any, since those are what the user should verify;
+  - two or three sentences on why the prompt is built this way;
+  - for a reusable prompt, one line on what goes into each placeholder;
+  - if the request rests on a misunderstanding that would make the prompt miss its goal (for example, believing files must be uploaded somewhere first), one line correcting it;
+  - only if you believe a different detail level would serve the task better (often noticed during the check), one line saying which and why. Keep the prompt at the level the user chose.
+- Don't save the prompt to a file or send it anywhere; the user copies it.

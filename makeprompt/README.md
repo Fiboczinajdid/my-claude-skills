@@ -1,12 +1,31 @@
-# quick summary of the skill
-A Claude skill that turns your really bad prompt with no details and context into a ready-to-use prompt with everything you would want LLM to know - for Claude or other LLMs
+# makeprompt
+
+A Claude skill that turns a rough task description into a ready-to-paste prompt for Claude, built for where you'll use it: Claude Code, a one-off claude.ai chat, or Project instructions.
+
 ## What it does
 
-Invoke it with the `/makeprompt` command. Describe what you want an AI to help you with — short or detailed, it doesn't matter — and the skill will:
+Invoke it with `/makeprompt`, optionally with a detail level: `/makeprompt zwięzły|standard|pełny …`. Then:
 
-1. Ask how long/detailed you want the final prompt to be.
-2. Ask any clarifying questions needed to fully understand the task.
-3. Write a well-structured prompt following solid prompting practice.
-4. Show it to you in a copyable code block, ready to paste into another AI chat.
+1. **Reads your request**: what Claude should produce, where the prompt will be used, whether it's one-off or reusable, and which constraints matter.
+2. **Asks what it needs to know**, in rounds, with no cap on questions. It always asks for the detail level (unless you gave it in the command), with a recommendation:
+   - **Zwięzły**: goal and expected result, 1–5 sentences.
+   - **Standard**: adds context, constraints, output format and a clear "done when".
+   - **Pełny**: adds edge cases, examples, ordered steps and verification.
+3. **Writes the prompt** using Claude-specific practice (XML tags for material, reasons behind constraints, calm wording without shouted rules, a clear finish line) plus destination-specific notes from `references/`.
+4. **Checks it** as a reader who has never seen your conversation, and fixes gaps.
+5. **Delivers** the prompt in a copyable code block, followed by assumptions to verify, a short "why it's built this way", and a suggestion for a different detail level only when it's warranted.
 
-The skill only triggers on the explicit `/makeprompt` command.
+It only triggers on the explicit `/makeprompt` command (`disable-model-invocation: true`), so its description doesn't take up context in other conversations.
+
+## Files
+
+```
+makeprompt/
+├── SKILL.md                  # main instructions
+└── references/
+    ├── claude-code.md        # prompts for Claude Code
+    ├── chat.md               # prompts for a one-off chat
+    └── projekt.md            # Project instructions
+```
+
+Only the reference file for the chosen destination is loaded, which keeps each run cheaper.

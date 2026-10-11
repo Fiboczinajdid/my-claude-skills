@@ -8,15 +8,15 @@ This repo is a personal collection of [Claude Skills](https://www.anthropic.com/
 
 | Skill | What it does | Trigger |
 |---|---|---|
-| [`makeprompt`](./makeprompt) | Turns a task description into a polished, ready-to-use prompt for another AI/LLM | `/makeprompt` |
+| [`makeprompt`](./makeprompt) | Turns a task description into a ready-to-paste prompt for Claude, tailored to Claude Code, a one-off chat, or Project instructions | `/makeprompt` |
 
 ## Installation
 
 ### Claude.ai (web / desktop / mobile)
 
-1. Open the skill's folder in this repo and download its `SKILL.md`.
+1. Download the skill's whole folder (not just `SKILL.md`; some skills, like `makeprompt`, include reference files) and zip it so the ZIP contains the folder itself, e.g. `makeprompt.zip` → `makeprompt/SKILL.md`.
 2. Go to **Settings → Customize → Skills**.
-3. Upload the file.
+3. Upload the ZIP. If a skill with the same name exists, remove the old one first.
 4. Make sure it's enabled.
 
 ### Claude Code
