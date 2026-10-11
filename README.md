@@ -30,7 +30,7 @@ cp -r my-claude-skills/<skill-name> ~/.claude/skills/
 # Or symlink, so future updates in this repo flow through automatically
 ln -s "$(pwd)/my-claude-skills/<skill-name>" ~/.claude/skills/<skill-name>
 ```
-
+```bash
 ## Adding a new skill to this repo
 
 1. Create a new folder at the repo root, named after the skill (e.g. `my-new-skill/`).
@@ -38,6 +38,7 @@ ln -s "$(pwd)/my-claude-skills/<skill-name>" ~/.claude/skills/<skill-name>
 3. If the skill needs supporting files (scripts, templates, reference docs), add them alongside `SKILL.md` in the same folder.
 4. Add a row for it in the table above.
 5. Commit and push.
+6. '''
 
 ## License
 
