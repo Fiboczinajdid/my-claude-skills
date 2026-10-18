@@ -14,7 +14,7 @@ Invoke it with `/training-plan`. It's not a set of plan templates but a process:
 6. **Researches before planning**: separate searches per variable (volume, intensity, frequency, exercise selection, rest, order, interference), in English, with a source hierarchy (meta-analyses → ACSM/NSCA position stands → single studies → blogs only with a note). It writes a "research → decision" note for each variable and runs a checklist before handing the plan over. If web search is off, it says so at the start instead of planning from memory.
 7. **Delivers the plan** (usually 6–8 weeks) as tables in the chat: exercise, sets, reps, weight, rest, notes. No RPE or reps-in-reserve. Plus how the plan changes week to week, when to change it, the explanation you chose, and 2–5 sources.
 
-When you come back to change the plan, it follows the same research process and changes only what it considers necessary.
+When you come back to change the plan for a specific reason (stalled lift, weights that don't fit, fatigue, pain, a new schedule or goal), it follows the same research process and changes only what it considers necessary. When you want to refresh a plan you've followed for a long time, it first diagnoses what actually stalled, checking the cheap causes (recovery, effort, weekly sets, fatigue) before swapping exercises, keeps what still works and rotates accessories on purpose.
 
 It covers training only, no diet. It asks about injuries to choose exercises, not as a medical screening; if you mention a serious condition, it suggests checking the plan with a doctor or physiotherapist and still builds it.
 
@@ -30,7 +30,8 @@ training-plan/
 ├── SKILL.md                  # main instructions: interview, goal interpretation, research, plan format
 └── references/
     ├── data-by-goal.md       # what data to collect per goal and what each item changes
-    └── plan-updates.md       # how to update an existing plan
+    ├── change-plan.md        # how to change a plan for a specific reason
+    └── refresh-plan.md       # how to refresh a plan you've followed for a long time
 ```
 
-`plan-updates.md` is read only when you come back to change a plan, so building a new plan doesn't load it.
+`change-plan.md` and `refresh-plan.md` are read only when you come back with a plan, so building a new plan doesn't load them.

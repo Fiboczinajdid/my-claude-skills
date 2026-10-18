@@ -1,6 +1,6 @@
 ---
 name: training-plan
-description: Builds the most optimal, research-based training plan for any person and any goal after a thorough interview, and updates an existing plan. Use whenever someone asks for a training plan, a gym or home workout routine, a running plan, a plan for muscle, strength, fat loss, vertical jump, speed, mobility, or preparation for a sport or fitness test, including combined or unusual goals (e.g. bigger arms and a higher vertical) and requests that don't say "plan", like "what should I do at the gym" or "how should I train to…". Also use when someone comes back with a plan and wants to change it because they've stalled, the weights don't fit, or their circumstances changed.
+description: Builds the most optimal, research-based training plan for any person and any goal after a thorough interview, and updates an existing plan. Use whenever someone asks for a training plan, a gym or home workout routine, a running plan, a plan for muscle, strength, fat loss, vertical jump, speed, mobility, or preparation for a sport or fitness test, including combined or unusual goals (e.g. bigger arms and a higher vertical) and requests that don't say "plan", like "what should I do at the gym" or "how should I train to…". Also use when someone comes back with a plan and wants to change it because they've stalled, the weights don't fit, or their circumstances changed, or wants to refresh a plan they've been following for a long time.
 disable-model-invocation: true
 ---
 
@@ -13,7 +13,10 @@ Reply and write the plan in the language the person writes in, in plain words, w
 ## Reference files
 
 - `references/data-by-goal.md`: what data to collect (core and modules for motor qualities), what each item changes in the plan, how to ask, and proxy questions for estimating strength. **Read it before the interview** (step 3).
-- `references/plan-updates.md`: how to change an existing plan. **Read it only when the person comes back with a plan** to change or asks for an adjustment. It isn't needed when building a new plan.
+- `references/change-plan.md`: how to change an existing plan for a specific reason (weights don't fit, a stalled exercise, the end of a block, fatigue, pain, changed time, equipment, schedule or goal, skipped sessions). **Read it only when the person comes back with a plan** to change for such a reason or asks for an adjustment.
+- `references/refresh-plan.md`: how to refresh a plan the person has followed for a long time without changes (they've heard plans should be changed regularly, progress has slowed without one clear cause, or they're bored). **Read it only when that's the reason.** If both apply, read both: this file for the diagnosis, `change-plan.md` for the specific reason.
+
+Neither file is needed when building a new plan.
 
 ## Before you start
 
@@ -101,7 +104,7 @@ The plan usually covers 6–8 weeks; choose the length based on the goal, traini
 Translate the headings and column names into the language of the conversation.
 
 - The table has no RPE or reps in reserve. People without training knowledge tend to be confused by these terms rather than helped. Keep practical things in the "Notes" column: technique, tempo, an exercise substitute, intent of the movement (e.g. "as fast as possible on the way up").
-- "When to change the plan" is about more than progressing the weight: changing the rep range, the exercise variant, moving to the next block, a lighter week. Give concrete signals, e.g. no progress in a key exercise for 2–3 weeks, the end of a block, clear fatigue or a drop in jump quality, weights from the ranges clearly too light or too heavy, a schedule change. Add that with any of these signals it's worth coming back to adjust the plan.
+- "When to change the plan" is about more than progressing the weight: changing the rep range, the exercise variant, moving to the next block, a lighter week. Give concrete signals, e.g. no progress in a key exercise for 2–3 weeks, the end of a block, clear fatigue or a drop in jump quality, weights from the ranges clearly too light or too heavy, a schedule change. Add that with any of these signals it's worth coming back to adjust the plan. Following the plan for a long time is not a signal by itself; stalled progress, fatigue, pain or boredom are.
 - Don't add a nutrition plan. If the person asks about diet, say this plan covers training.
 
 ## Health and safety
