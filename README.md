@@ -9,6 +9,10 @@ This repo is a personal collection of [Claude Skills](https://www.anthropic.com/
 | Skill | What it does | Trigger |
 |---|---|---|
 | [`makeprompt`](./makeprompt) | Turns a task description into a ready-to-paste prompt for Claude, tailored to Claude Code, a one-off chat, or Project instructions | `/makeprompt` |
+| [`decision-log-message`](./decision-log/decision-log-message) | Logs every judgment call Claude made on its own in one response: assumptions, choices, tradeoffs, with the reason and the alternative | `/decision-log-message` |
+| [`decision-log-session`](./decision-log/decision-log-session) | Turns on a decision log for the rest of the conversation, shown only when a response made a Medium or High impact decision | `/decision-log-session` |
+
+The two `decision-log` skills live together in [`decision-log/`](./decision-log), which has its own README.
 
 ## Installation
 
@@ -30,7 +34,9 @@ cp -r my-claude-skills/<skill-name> ~/.claude/skills/
 # Or symlink, so future updates in this repo flow through automatically
 ln -s "$(pwd)/my-claude-skills/<skill-name>" ~/.claude/skills/<skill-name>
 ```
-```bash
+
+For skills grouped in a folder (like `decision-log/`), use the path to each skill folder, e.g. `decision-log/decision-log-message`.
+
 ## Adding a new skill to this repo
 
 1. Create a new folder at the repo root, named after the skill (e.g. `my-new-skill/`).
@@ -38,7 +44,6 @@ ln -s "$(pwd)/my-claude-skills/<skill-name>" ~/.claude/skills/<skill-name>
 3. If the skill needs supporting files (scripts, templates, reference docs), add them alongside `SKILL.md` in the same folder.
 4. Add a row for it in the table above.
 5. Commit and push.
-6. '''
 
 ## License
 
