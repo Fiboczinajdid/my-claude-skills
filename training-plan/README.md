@@ -20,6 +20,9 @@ It covers training only, no diet. It asks about injuries to choose exercises, no
 
 It only triggers on the explicit `/training-plan` command (`disable-model-invocation: true`).
 
+## Legal boring stuff ehhhh
+This skill generates general training suggestions, not medical advice. Train at your own risk, and check with a doctor or physiotherapist before starting if you have an injury, a health condition, or haven’t exercised in a while.
+
 ## Files
 
 ```
