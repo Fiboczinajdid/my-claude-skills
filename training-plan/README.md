@@ -1,6 +1,6 @@
 # training-plan
 
-A Claude skill that builds the most optimal, research-based training plan for any person and any goal, after a thorough interview. It also updates an existing plan. It replies in the language you write in.
+A Claude skill that builds the most optimal, research-based training plan for any person and any goal, after a thorough interview. It gather all important data and also updates an existing plan. It replies in the language you write in.
 
 ## What it does
 
