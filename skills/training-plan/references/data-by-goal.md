@@ -36,12 +36,22 @@ Don't follow up on other skipped items.
 | Best results: current and lifetime | Training level, potential for a quick return to form |
 | Past injuries | Exercise selection, caution in movements that load that area |
 | Current injuries, pain, movements to avoid **(key)** | Exercise selection and substitution |
-| Days per week and session length **(key)** | Training split, number of exercises per session |
+| Days per week they can realistically train (what they actually do, not what they plan) **(key)** | Training split; how often each muscle can be trained |
+| Session budget: how much fits in one session **(key)** | Number of exercises and sets per session, whether weekly targets per muscle are reachable |
 | Location and equipment **(key)** | Exercise selection |
 | Other demanding activities (sport, physical work) | Recovery, conflicts, spreading days across the week |
 | Sleep and stress | Tolerable volume |
 | Deadline or competition | Periodization, peaking |
 | Preferred session style, liked and disliked exercises | Adherence |
+
+### Asking about the session budget
+Always ask this, even if the person gave days per week. Let them choose how they want to set the limit, with ready-made options:
+- time per session (e.g. "about 60 minutes"),
+- maximum number of sets per session (e.g. "about 20 sets"),
+- maximum number of exercises per session (e.g. "at most 8 exercises"),
+- or a combination of these.
+
+Whichever they give becomes a hard limit for every session in the plan. If they skip it, it's "no data": say in the plan what you assumed the sessions take (time and sets), so they can correct it.
 
 ## Modules for motor qualities
 
