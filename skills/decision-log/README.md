@@ -54,14 +54,14 @@ These are two separate skills in one folder, so install each skill folder on its
 **Claude Code:**
 
 ```bash
-npx skills add Fiboczinajdid/my-claude-skills --full-depth --skill decision-log-message decision-log-session
+npx skills add Fiboczinajdid/my-claude-skills --skill decision-log-message decision-log-session
 ```
 
 Or copy them manually from a clone of this repo:
 
 ```bash
-cp -r my-claude-skills/decision-log/decision-log-message ~/.claude/skills/
-cp -r my-claude-skills/decision-log/decision-log-session ~/.claude/skills/
+cp -r my-claude-skills/skills/decision-log/decision-log-message ~/.claude/skills/
+cp -r my-claude-skills/skills/decision-log/decision-log-session ~/.claude/skills/
 ```
 
 ## Files

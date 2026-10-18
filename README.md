@@ -8,12 +8,12 @@ This repo is a personal collection of [Claude Skills](https://www.anthropic.com/
 
 | Skill | What it does | Trigger |
 |---|---|---|
-| [`makeprompt`](./makeprompt) | Turns a task description into a ready-to-paste prompt for Claude, tailored to Claude Code, a one-off chat, or Project instructions | `/makeprompt` |
-| [`decision-log-message`](./decision-log/decision-log-message) | Logs every judgment call Claude made on its own in one response: assumptions, choices, tradeoffs, with the reason and the alternative | `/decision-log-message` |
-| [`decision-log-session`](./decision-log/decision-log-session) | Turns on a decision log for the rest of the conversation, shown only when a response made a Medium or High impact decision | `/decision-log-session` |
-| [`training-plan`](./training-plan) | Builds the most optimal, research-based training plan for any goal after a thorough interview, and updates existing plans | `/training-plan` |
+| [`makeprompt`](./skills/makeprompt) | Turns a task description into a ready-to-paste prompt for Claude, tailored to Claude Code, a one-off chat, or Project instructions | `/makeprompt` |
+| [`decision-log-message`](./skills/decision-log/decision-log-message) | Logs every judgment call Claude made on its own in one response: assumptions, choices, tradeoffs, with the reason and the alternative | `/decision-log-message` |
+| [`decision-log-session`](./skills/decision-log/decision-log-session) | Turns on a decision log for the rest of the conversation, shown only when a response made a Medium or High impact decision | `/decision-log-session` |
+| [`training-plan`](./skills/training-plan) | Builds the most optimal, research-based training plan for any goal after a thorough interview, and updates existing plans | `/training-plan` |
 
-The two `decision-log` skills live together in [`decision-log/`](./decision-log), which has its own README.
+The two `decision-log` skills live together in [`skills/decision-log/`](./skills/decision-log), which has its own README.
 
 ## Installation
 
@@ -40,13 +40,13 @@ With [`npx skills`](https://github.com/vercel-labs/skills) (needs [Node.js](http
 
 ```bash
 # Choose skills from a list
-npx skills add Fiboczinajdid/my-claude-skills --full-depth
+npx skills add Fiboczinajdid/my-claude-skills
 
 # Or install one skill directly
-npx skills add Fiboczinajdid/my-claude-skills --full-depth --skill training-plan
+npx skills add Fiboczinajdid/my-claude-skills --skill training-plan
 ```
 
-`--full-depth` makes the installer also find the skills inside `decision-log/`. Add `-g` to install a skill for all your projects instead of only the current one. Run `npx skills update` later to get newer versions.
+Add `-g` to install a skill for all your projects instead of only the current one. Run `npx skills update` later to get newer versions.
 
 Or manually, with git:
 
@@ -54,17 +54,18 @@ Or manually, with git:
 git clone https://github.com/Fiboczinajdid/my-claude-skills.git
 
 # Copy the skill you want
-cp -r my-claude-skills/<skill-name> ~/.claude/skills/
+cp -r my-claude-skills/skills/<skill-name> ~/.claude/skills/
 
 # Or symlink, so future updates in this repo flow through automatically
-ln -s "$(pwd)/my-claude-skills/<skill-name>" ~/.claude/skills/<skill-name>
+ln -s "$(pwd)/my-claude-skills/skills/<skill-name>" ~/.claude/skills/<skill-name>
 ```
 
 For skills grouped in a folder (like `decision-log/`), use the path to each skill folder, e.g. `decision-log/decision-log-message`.
+
 <!--
 ## Adding a new skill to this repo
 
-1. Create a new folder at the repo root, named after the skill (e.g. `my-new-skill/`). The folder name must be unique across the repo, since it becomes the ZIP's name.
+1. Create a new folder inside `skills/`, named after the skill (e.g. `skills/my-new-skill/`). The folder name must be unique across the repo, since it becomes the ZIP's name.
 2. Add a file named exactly `SKILL.md` inside it with YAML frontmatter (`name`, `description`) followed by the instructions.
 3. If the skill needs supporting files (scripts, templates, reference docs), add them alongside `SKILL.md` in the same folder.
 4. Add a row for it in the skills table and in the download table above. The download link is `https://github.com/Fiboczinajdid/my-claude-skills/releases/download/skills/<skill-name>.zip`.
