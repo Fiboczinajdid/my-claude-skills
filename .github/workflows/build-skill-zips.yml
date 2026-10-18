@@ -1,0 +1,39 @@
+name: Build skill zips
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Zip each skill folder
+        shell: bash
+        run: |
+          mkdir -p dist
+          while read -r file; do
+            dir=$(dirname "$file")
+            name=$(basename "$dir")
+            if [ -e "dist/$name.zip" ]; then
+              echo "Two skills are named $name, rename one"; exit 1
+            fi
+            (cd "$(dirname "$dir")" && zip -rq "$GITHUB_WORKSPACE/dist/$name.zip" "$name" -x "*README.md" "*.DS_Store")
+            echo "Built $name.zip"
+          done < <(find . -name SKILL.md -not -path "./.git/*" -not -path "./dist/*" | sort)
+
+      - name: Publish the "skills" release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete skills --yes --cleanup-tag || true
+          gh release create skills dist/*.zip \
+            --title "Skill downloads" \
+            --notes "Ready-to-upload ZIPs for each skill, rebuilt automatically on every push to main. Upload one under Settings → Customize → Skills."

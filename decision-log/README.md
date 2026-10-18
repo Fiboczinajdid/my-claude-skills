@@ -49,9 +49,15 @@ Turns on a log for the rest of the conversation. From then on:
 
 These are two separate skills in one folder, so install each skill folder on its own, not the `decision-log` folder.
 
-**Claude.ai:** zip each folder separately (`decision-log-message.zip` → `decision-log-message/SKILL.md`, same for session) and upload both under **Settings → Customize → Skills**.
+**Claude.ai:** download [decision-log-message.zip](https://github.com/Fiboczinajdid/my-claude-skills/releases/download/skills/decision-log-message.zip) and [decision-log-session.zip](https://github.com/Fiboczinajdid/my-claude-skills/releases/download/skills/decision-log-session.zip), then upload both under **Settings → Customize → Skills**.
 
 **Claude Code:**
+
+```bash
+npx skills add Fiboczinajdid/my-claude-skills --full-depth --skill decision-log-message decision-log-session
+```
+
+Or copy them manually from a clone of this repo:
 
 ```bash
 cp -r my-claude-skills/decision-log/decision-log-message ~/.claude/skills/
