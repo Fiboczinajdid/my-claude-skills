@@ -1,0 +1,33 @@
+# training-plan
+
+A Claude skill that builds the most optimal, research-based training plan for any person and any goal, after a thorough interview. It also updates an existing plan. It replies in the language you write in.
+
+## What it does
+
+Invoke it with `/training-plan`. It's not a set of plan templates but a process: **collect data → find research → build the plan**.
+
+1. **Asks one question up front**: how much explanation you want with the plan (none / short / detailed).
+2. **Lets you tell everything first**: your goal, how you train now, what gets in the way. You can paste or describe your current plan (a photo or a note works too).
+3. **Interprets the goal**: breaks any goal, including combined or unusual ones (e.g. bigger arms + higher vertical jump), into motor qualities (strength, power, hypertrophy, endurance, mobility, movement control), sets a main goal and secondary goals, checks for conflicts between them, and asks you to confirm.
+4. **Asks only what changes the plan**, in batches of 3–5, from a core set plus modules for each motor quality. For unusual or sport-specific goals it looks up how specialists assess that quality and asks extra questions. Every question can be skipped: a skipped answer is treated as "no data", never filled in with a made-up default. If you skip something key, it asks once at the end whether you're sure.
+5. **Estimates your strength**: from your weight × reps (Epley/Brzycki, sets up to ~10 reps) or, if you skip that, from proxy questions. Weights are given as ranges, rounded to real plate increments.
+6. **Researches before planning**: separate searches per variable (volume, intensity, frequency, exercise selection, rest, order, interference), in English, with a source hierarchy (meta-analyses → ACSM/NSCA position stands → single studies → blogs only with a note). It writes a "research → decision" note for each variable and runs a checklist before handing the plan over. If web search is off, it says so at the start instead of planning from memory.
+7. **Delivers the plan** (usually 6–8 weeks) as tables in the chat: exercise, sets, reps, weight, rest, notes. No RPE or reps-in-reserve. Plus how the plan changes week to week, when to change it, the explanation you chose, and 2–5 sources.
+
+When you come back to change the plan, it follows the same research process and changes only what it considers necessary.
+
+It covers training only, no diet. It asks about injuries to choose exercises, not as a medical screening; if you mention a serious condition, it suggests checking the plan with a doctor or physiotherapist and still builds it.
+
+It only triggers on the explicit `/training-plan` command (`disable-model-invocation: true`).
+
+## Files
+
+```
+training-plan/
+├── SKILL.md                  # main instructions: interview, goal interpretation, research, plan format
+└── references/
+    ├── data-by-goal.md       # what data to collect per goal and what each item changes
+    └── plan-updates.md       # how to update an existing plan
+```
+
+`plan-updates.md` is read only when you come back to change a plan, so building a new plan doesn't load it.

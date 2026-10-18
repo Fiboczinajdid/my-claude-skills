@@ -11,6 +11,7 @@ This repo is a personal collection of [Claude Skills](https://www.anthropic.com/
 | [`makeprompt`](./makeprompt) | Turns a task description into a ready-to-paste prompt for Claude, tailored to Claude Code, a one-off chat, or Project instructions | `/makeprompt` |
 | [`decision-log-message`](./decision-log/decision-log-message) | Logs every judgment call Claude made on its own in one response: assumptions, choices, tradeoffs, with the reason and the alternative | `/decision-log-message` |
 | [`decision-log-session`](./decision-log/decision-log-session) | Turns on a decision log for the rest of the conversation, shown only when a response made a Medium or High impact decision | `/decision-log-session` |
+| [`training-plan`](./training-plan) | Builds the most optimal, research-based training plan for any goal after a thorough interview, and updates existing plans | `/training-plan` |
 
 The two `decision-log` skills live together in [`decision-log/`](./decision-log), which has its own README.
 
