@@ -17,6 +17,11 @@ Invoke it with `/makeprompt`, optionally with a detail level: `/makeprompt zwię
 
 It only triggers on the explicit `/makeprompt` command (`disable-model-invocation: true`), so its description doesn't take up context in other conversations.
 
+## When to use
+
+It's primarly made for making prompts on fresh sessions, when you dont want to type sophisticated prompts. This skill makes your prompt easier for AI to understand and eliminates possible
+ambiguities. Performs the best in easy and simple tasks
+
 ## Files
 
 ```
