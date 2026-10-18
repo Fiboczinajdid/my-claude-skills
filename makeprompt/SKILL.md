@@ -14,20 +14,20 @@ If the user names a different model or tool as the target, write for that target
 
 From the description and any attachments, work out:
 - what the receiving Claude should produce or do;
-- the destination: Claude Code (repo, code, project files, terminal), Project instructions (a standing assistant, "zawsze", "w każdej rozmowie"), otherwise a one-off chat;
+- the destination: Claude Code (repo, code, project files, terminal), Project instructions (a standing assistant, "always", "in every conversation", in any language), otherwise a one-off chat;
 - whether the prompt is one-off or reused with different input each time;
 - the constraints that matter: audience, tone, format, scope, what must not happen.
 
-The user may put a detail level right after the command: `/makeprompt zwięzły|standard|pełny …`.
+The user may put a detail level right after the command: `/makeprompt concise|standard|full …`. Accept the same level named in the user's language too.
 
 ## 2. Ask
 
 Ask every question you need, in rounds: put all currently open questions in one message, then wait. There is no cap on questions or rounds; continue until you know what the receiving Claude must produce and under which constraints. Skip anything the description already answers.
 
-Unless the user gave the level in the command, always ask for the detail level in the first round, alongside the other questions, with your recommendation listed first and marked "(zalecany)":
-- **Zwięzły**: goal and expected result, 1–5 sentences; the receiving Claude decides the rest.
+Unless the user gave the level in the command, always ask for the detail level in the first round, alongside the other questions, with your recommendation listed first and marked as recommended:
+- **Concise**: goal and expected result, 1–5 sentences; the receiving Claude decides the rest.
 - **Standard**: adds context, constraints, output format and a clear "done when".
-- **Pełny**: adds edge cases, examples, ordered steps and how to verify the result.
+- **Full**: adds edge cases, examples, ordered steps and how to verify the result.
 
 Base the recommendation on the task's complexity and on how costly a wrong result would be.
 
@@ -38,14 +38,14 @@ Ask about the destination only when you can't infer it. Use the multiple-choice 
 Read the reference file for the destination first:
 - Claude Code → `references/claude-code.md`
 - one-off chat → `references/chat.md`
-- Project instructions → `references/projekt.md`
+- Project instructions → `references/project.md`
 
 In every prompt:
-- State the task and its purpose plainly. Give the reason behind each constraint ("krótko, bo czytam na telefonie"); Claude applies a rule better when it knows why the rule exists.
+- State the task and its purpose plainly. Give the reason behind each constraint ("keep it short, I'm reading on my phone"); Claude applies a rule better when it knows why the rule exists.
 - Say what to do, not only what to avoid.
 - Keep a calm, normal register: no capitals for emphasis, no MUST/NEVER/CRITICAL. Current Claude models follow instructions closely and overapply rules that are shouted.
-- Wrap supplied material (documents, data, code, examples) in descriptive XML tags such as `<artykul>…</artykul>` and refer to it by the tag name.
-- Reusable prompt: leave placeholders such as `{{ARTYKUL}}` inside those tags. One-off prompt: put the real content in.
+- Wrap supplied material (documents, data, code, examples) in descriptive XML tags such as `<article>…</article>` and refer to it by the tag name.
+- Reusable prompt: leave placeholders such as `{{ARTICLE}}` inside those tags. One-off prompt: put the real content in.
 - Say what "done" looks like, and what to do when information is missing or the task turns out not to be possible as described (ask, state assumptions, or report back).
 - If the task depends on a file or image the user has, the prompt says it is attached, and you tell the user to attach it.
 - Add examples only if the user supplied material or a single example removes real ambiguity; never invent examples that could mislead.
@@ -55,7 +55,7 @@ Language: Project instructions in English, ending with an instruction to respond
 
 ## 4. Check
 
-Before showing the prompt, reread it as a capable reader who has never seen this conversation. Can they tell what to do, with what material, and when they are done? Does it refer to anything that isn't in it ("ten plik", "jak wcześniej")? Fix whatever fails. Don't report the check itself.
+Before showing the prompt, reread it as a capable reader who has never seen this conversation. Can they tell what to do, with what material, and when they are done? Does it refer to anything that isn't in it ("this file", "as before")? Fix whatever fails. Don't report the check itself.
 
 ## 5. Deliver
 

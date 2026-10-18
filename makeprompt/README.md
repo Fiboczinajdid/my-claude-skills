@@ -4,13 +4,13 @@ A Claude skill that turns a rough task description into a ready-to-paste prompt 
 
 ## What it does
 
-Invoke it with `/makeprompt`, optionally with a detail level: `/makeprompt zwięzły|standard|pełny …`. Then:
+Invoke it with `/makeprompt`, optionally with a detail level: `/makeprompt concise|standard|full …` (the level can also be typed in your own language). Then:
 
 1. **Reads your request**: what Claude should produce, where the prompt will be used, whether it's one-off or reusable, and which constraints matter.
 2. **Asks what it needs to know**, in rounds, with no cap on questions. It always asks for the detail level (unless you gave it in the command), with a recommendation:
-   - **Zwięzły**: goal and expected result, 1–5 sentences.
+   - **Concise**: goal and expected result, 1–5 sentences.
    - **Standard**: adds context, constraints, output format and a clear "done when".
-   - **Pełny**: adds edge cases, examples, ordered steps and verification.
+   - **Full**: adds edge cases, examples, ordered steps and verification.
 3. **Writes the prompt** using Claude-specific practice (XML tags for material, reasons behind constraints, calm wording without shouted rules, a clear finish line) plus destination-specific notes from `references/`.
 4. **Checks it** as a reader who has never seen your conversation, and fixes gaps.
 5. **Delivers** the prompt in a copyable code block, followed by assumptions to verify, a short "why it's built this way", and a suggestion for a different detail level only when it's warranted.
@@ -19,8 +19,7 @@ It only triggers on the explicit `/makeprompt` command (`disable-model-invocatio
 
 ## When to use
 
-It's primarly made for making prompts on fresh sessions, when you dont want to type sophisticated prompts. This skill makes your prompt easier for AI to understand and eliminates possible
-ambiguities. Performs the best in easy and simple tasks
+It's primarily made for writing prompts for fresh sessions, when you don't want to type out a sophisticated prompt yourself. It makes your prompt easier for AI to understand and removes possible ambiguities. It performs best on easy, simple tasks.
 
 ## Files
 
@@ -30,7 +29,7 @@ makeprompt/
 └── references/
     ├── claude-code.md        # prompts for Claude Code
     ├── chat.md               # prompts for a one-off chat
-    └── projekt.md            # Project instructions
+    └── project.md            # Project instructions
 ```
 
 Only the reference file for the chosen destination is loaded, which keeps each run cheaper.

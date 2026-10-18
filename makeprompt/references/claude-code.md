@@ -12,6 +12,6 @@ Claude Code works inside the user's project folder with access to files, the she
 - End by asking for a short report: what changed, what was verified, what is left open.
 
 By detail level:
-- Zwięzły: goal + done when.
+- Concise: goal + done when.
 - Standard: + scope, constraints, verification.
-- Pełny: + plan first, ordered steps, edge cases, how to roll back.
+- Full: + plan first, ordered steps, edge cases, how to roll back.
