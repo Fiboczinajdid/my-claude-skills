@@ -61,7 +61,7 @@ ln -s "$(pwd)/my-claude-skills/<skill-name>" ~/.claude/skills/<skill-name>
 ```
 
 For skills grouped in a folder (like `decision-log/`), use the path to each skill folder, e.g. `decision-log/decision-log-message`.
-
+<!--
 ## Adding a new skill to this repo
 
 1. Create a new folder at the repo root, named after the skill (e.g. `my-new-skill/`). The folder name must be unique across the repo, since it becomes the ZIP's name.
@@ -69,7 +69,7 @@ For skills grouped in a folder (like `decision-log/`), use the path to each skil
 3. If the skill needs supporting files (scripts, templates, reference docs), add them alongside `SKILL.md` in the same folder.
 4. Add a row for it in the skills table and in the download table above. The download link is `https://github.com/Fiboczinajdid/my-claude-skills/releases/download/skills/<skill-name>.zip`.
 5. Commit and push to `main`. The ZIP is built automatically within a minute or so.
-
+-->
 ## License
 
 MIT — see [LICENSE](./LICENSE). Feel free to copy, adapt, or reuse any of these skills.
